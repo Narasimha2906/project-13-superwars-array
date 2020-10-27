@@ -23,15 +23,15 @@ const players = [
 
 // initialize players with image and strength
 const initPlayers = (players) => {
-    let detailedPlayers = '';
+    let detailedPlayers = [];
 
     // Instead of forloop use Map method
     // Code here
 detailedPlayers = players.map(gg);
-    function gg(a,idx,players){
+    function gg(players){
     var g={
-        name:a,
-        strength:getRandomStrength(),
+        name:players[idx],
+        strength:getRandomStrength,
         image: "images/super-"+(idx+1)+".png",
         type:(i%2)?"hero":"villian"
     };
@@ -41,9 +41,9 @@ return g;
 
 
 // getting random strength
-const getRandomStrength = () => {
-    return Math.ceil(Math.random() * 100);
-}
+    function getRandomStrength() {
+        return Math.ceil(Math.random() * 100);
+    }
 
 // Build player template
 const buildPlayers = (players, type) => {
@@ -53,21 +53,23 @@ const buildPlayers = (players, type) => {
     // Use chaining of Array methods - filter, map and join
     // Type your code here
     fragment = detailedPlayers.map(gg1);
-    function gg1(idx,Array){
-        player=
+    function gg1(){
+        let player=
         `<div class="player">
-        <img src="${detailedPlayers[idx].image}" alt="">
-        <div class="name">${detailedPlayers[idx].name}</div>
-        <div class="strength">${detailedPlayers[idx].strength}</div>
+        <img src="${detailedPlayers.image}" alt="">
+        <div class="name">${detailedPlayers.name}</div>
+        <div class="strength">${detailedPlayers.strength}</div>
     </div>`
-    }
+    
     if(detailedPlayers[idx].type==type){
         fragment=fragment+player;
     }
+    return fragment;
+}
      
 
-    return fragment;
-    }
+    
+    
 
 
 
@@ -79,5 +81,5 @@ const viewPlayers = (players) => {
 
 
 window.onload = () => {
-    viewPlayers(initPlayers(PLAYERS));
+    viewPlayers(initPlayers(players));
 }
